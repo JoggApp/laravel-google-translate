@@ -54,7 +54,7 @@ return [
 
 - After setting up the config file values you are all set to use the following methods :smile:
 
-- Detect the language:
+- Detecting the language. You can pass both, a single string or an array of multiple strings to it:
 
 ```php
 GoogleTranslate::detectLanguage('Hello world'): array
@@ -64,7 +64,7 @@ GoogleTranslate::detectLanguage(['Hello world', 'Laravel is the best']);
 // Returns multi-dimensional array containing result set for all the array elements.
 ```
 
-- Translate the string(s): The `translate` method accepts a second optional argument which can be the code of the language you want the string to be translated in. You can specify the default option in the config file:
+- Translating the string(s): The `translate` method accepts a second optional argument which can be the code of the language you want the string to be translated in. You can specify the default option in the config file:
 
 ```php
 GoogleTranslate::translate('Hello world'): array
@@ -80,13 +80,23 @@ GoogleTranslate::translate(['Hello world', 'Laravel is the best']);
 GoogleTranslate::getAvaliableTranslationsFor('en'): array
 ```
 
-- Translate unless the language is same as the first argument. This method is a clean way to ask the package to detect the language of the given string, if it is same as the first argument, translation isn't performed. It accepts an optional third argument which is the language code you want the string to be translated in. You can specify the default option in the config file:
+- Translate unless the language is same as the first argument. This method is a clean way to ask the package to detect the language of the given string, if it is same as the first argument, translation isn't performed. It accepts an optional third argument which is the language code you want the string to be translated in. You can specify the default option in the config file. If the languages are same, the input string is returned as it is, else an array is returned containing the translation results:
 
 ```php
-GoogleTranslate::unlessLanguageIs('en', string $text) 
+GoogleTranslate::unlessLanguageIs('en', string $text);
 ```
 
-- If the languages are same, the input string is returned as it is, else an array is returned containing the translation results.
+- Translating and just returning back the translated string. It accepts an optional second argument which is the language code you want the string to be translated in. You can specify the default option in the config file.
+
+```php
+GoogleTranslate::justTranslate(string $text): string
+```
+
+- There is also a nice blade helper called `@translate` that comes with the package to make its use more neat in the view files. It accepts an optional second argument which is the language code you want the string to be translated in. You can specify the default option in the config file.
+
+```
+@translate('Hello World')
+```
 
 ## Testing
 

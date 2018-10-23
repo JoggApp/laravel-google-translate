@@ -74,6 +74,19 @@ class GoogleTranslate
         ];
     }
 
+    public function justTranslate(string $input, $to = null): string
+    {
+        $translateTo = $to ?? config('googletranslate.default_target_translation');
+
+        $translateTo = $this->sanitizeLanguageCode($translateTo);
+
+        $response = $this
+            ->translateClient
+            ->translate($input, $translateTo);
+
+        return $response['text'];
+    }
+
     public function translateBatch(array $input, string $translateTo): array
     {
         $translateTo = $this->sanitizeLanguageCode($translateTo);
@@ -121,7 +134,7 @@ class GoogleTranslate
 
     public function sanitizeLanguageCode(string $languageCode)
     {
-        $languageCode = strtolower($languageCode);
+        $languageCode = trim(strtolower($languageCode));
 
         if (in_array($languageCode, $this->languages())) {
             return $languageCode;

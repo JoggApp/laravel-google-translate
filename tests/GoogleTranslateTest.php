@@ -113,6 +113,19 @@ class GoogleTranslateTest extends TestCase
     }
 
     /** @test */
+    public function test_the_just_translate_method_returns_just_the_translated_string()
+    {
+        $this->translateClient
+            ->shouldReceive('translate')->with($this->testString, 'en')
+            ->once()
+            ->andReturn(['text' => 'A test string']);
+
+        $response = $this->translate->justTranslate($this->testString, 'en');
+
+        $this->assertEquals('A test string', $response);
+    }
+
+    /** @test */
     public function test_the_unless_language_is_method_does_not_translate_the_language_of_given_text_if_it_is_same_as_defined_in_that_method()
     {
         $this->translateClient
@@ -152,6 +165,10 @@ class GoogleTranslateTest extends TestCase
     public function it_sanitizes_the_language_codes()
     {
         $response = $this->translate->sanitizeLanguageCode('en');
+
+        $this->assertEquals('en', $response);
+
+        $response = $this->translate->sanitizeLanguageCode('     en');
 
         $this->assertEquals('en', $response);
 
