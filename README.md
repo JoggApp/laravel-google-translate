@@ -59,7 +59,8 @@ return [
 ```php
 GoogleTranslate::detectLanguage('Hello world'): array
 
-GoogleTranslate::detectLanguage(['Hello world', 'Laravel is the best'])
+GoogleTranslate::detectLanguage(['Hello world', 'Laravel is the best']);
+
 // Returns multi-dimensional array containing result set for all the array elements.
 ```
 
@@ -68,7 +69,8 @@ GoogleTranslate::detectLanguage(['Hello world', 'Laravel is the best'])
 ```php
 GoogleTranslate::translate('Hello world'): array
 
-GoogleTranslate::translate(['Hello world', 'Laravel is the best'])
+GoogleTranslate::translate(['Hello world', 'Laravel is the best']);
+
 // Returns multi-dimensional array containing result set for all the array elements.
 ```
 
