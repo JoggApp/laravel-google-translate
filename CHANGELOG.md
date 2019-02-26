@@ -1,5 +1,8 @@
 All the notable changes to the Laravel Google Translate package are documented in this file:
 
+## v2.0.4 (27-02-2019)
+- Remove phpunit depcrications
+
 ## v2.0.3 (27-02-2019)
 - update phpunit
 

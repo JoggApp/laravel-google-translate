@@ -39,7 +39,7 @@ class GoogleTranslateTest extends TestCase
 
         $response = $this->translate->detectLanguage($this->testString);
 
-        $this->assertInternalType('array', $response);
+        $this->assertIsArray($response);
 
         $this->assertArrayHasKey('text', $response);
         $this->assertArrayHasKey('language_code', $response);
@@ -59,7 +59,7 @@ class GoogleTranslateTest extends TestCase
 
         $response = $this->translate->detectLanguage([$this->testString, $this->testString]);
 
-        $this->assertInternalType('array', $response);
+        $this->assertIsArray($response);
 
         $this->assertArrayHasKey('text', $response[0]);
         $this->assertArrayHasKey('language_code', $response[0]);
@@ -79,7 +79,7 @@ class GoogleTranslateTest extends TestCase
 
         $response = $this->translate->translate($this->testString, 'hi');
 
-        $this->assertInternalType('array', $response);
+        $this->assertIsArray($response);
 
         $this->assertArrayHasKey('source_text', $response);
         $this->assertArrayHasKey('source_language_code', $response);
@@ -100,7 +100,7 @@ class GoogleTranslateTest extends TestCase
 
         $response = $this->translate->translate([$this->testString, $this->testString], 'hi');
 
-        $this->assertInternalType('array', $response);
+        $this->assertIsArray($response);
 
         $this->assertArrayHasKey('source_text', $response[0]);
         $this->assertArrayHasKey('source_language_code', $response[0]);
@@ -153,7 +153,7 @@ class GoogleTranslateTest extends TestCase
 
         $response = $this->translate->unlessLanguageIs('hi', $this->testString, 'hi');
 
-        $this->assertInternalType('array', $response);
+        $this->assertIsArray($response);
 
         $this->assertArrayHasKey('source_text', $response);
         $this->assertArrayHasKey('source_language_code', $response);
