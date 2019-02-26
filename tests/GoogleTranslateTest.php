@@ -15,7 +15,7 @@ class GoogleTranslateTest extends TestCase
 
     private $translate;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 
