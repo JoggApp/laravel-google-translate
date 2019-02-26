@@ -24,7 +24,7 @@ class GoogleTranslateTest extends TestCase
         $this->translate = new GoogleTranslate($this->translateClient);
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         Mockery::close();
     }
