@@ -1,5 +1,9 @@
 All the notable changes to the Laravel Google Translate package are documented in this file:
 
+## v2.0.5 (27-04-2019)
+- Support the 'zh-TW' locale code.
+- Thank you to [Jaric](https://github.com/jaric) for sending the initial [PR](https://github.com/JoggApp/laravel-google-translate/pull/4).
+
 ## v2.0.4 (27-02-2019)
 - Remove phpunit depcrications
 

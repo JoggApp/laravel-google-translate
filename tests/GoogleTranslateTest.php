@@ -165,22 +165,22 @@ class GoogleTranslateTest extends TestCase
     public function it_sanitizes_the_language_codes()
     {
         $response = $this->translate->sanitizeLanguageCode('en');
-
         $this->assertEquals('en', $response);
 
         $response = $this->translate->sanitizeLanguageCode('     en');
-
         $this->assertEquals('en', $response);
 
         $response = $this->translate->sanitizeLanguageCode('EN');
-
         $this->assertEquals('en', $response);
+
+        // 'zh-TW' is the only language code defined by google that includes uppercase letters
+        $response = $this->translate->sanitizeLanguageCode('zh-TW');
+        $this->assertEquals('zh-TW', $response);
 
         $this->expectExceptionMessage(
             'Invalid or unsupported ISO 639-1 language code -xx-,
             get the list of valid and supported language codes by running GoogleTranslate::languages()'
         );
-
         $this->translate->sanitizeLanguageCode('xx');
     }
 }

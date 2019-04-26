@@ -134,10 +134,9 @@ class GoogleTranslate
 
     public function sanitizeLanguageCode(string $languageCode)
     {
-
         $languageCode = trim(strtolower($languageCode));
 
-        if ('zh-tw' === $languageCode) {
+        if ($languageCode === 'zh-tw') {
             $languageCode = 'zh-TW';
         }
 
