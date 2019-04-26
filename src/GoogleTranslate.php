@@ -134,7 +134,7 @@ class GoogleTranslate
 
     public function sanitizeLanguageCode(string $languageCode)
     {
-        $languageCode = trim(strtolower($languageCode));
+        $languageCode = trim($languageCode);
 
         if (in_array($languageCode, $this->languages())) {
             return $languageCode;
