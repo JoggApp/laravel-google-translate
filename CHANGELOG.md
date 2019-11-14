@@ -1,5 +1,9 @@
 All the notable changes to the Laravel Google Translate package are documented in this file:
 
+## v3.0.1 (14-11-2019)
+- Added the support for the format param.
+- Thank you to [Ross](https://github.com/RossUK88) for the [PR](https://github.com/JoggApp/laravel-google-translate/pull/8).
+
 ## v3.0.0 (04-09-2019)
 - Now supports Laravel v6.0
 - Support for Laravel v5.8 will be dropped in v3.1
