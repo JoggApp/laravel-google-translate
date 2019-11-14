@@ -10,6 +10,7 @@ use PHPUnit\Framework\TestCase;
 class GoogleTranslateTest extends TestCase
 {
     public $testString = 'A test string';
+    public $testHtmlString = '<p>A test string</p>';
 
     private $translateClient;
 
@@ -88,10 +89,28 @@ class GoogleTranslateTest extends TestCase
     }
 
     /** @test */
+    public function it_can_translate_the_html_string_passed_to_it()
+    {
+        $this->translateClient
+            ->shouldReceive('translate')->with($this->testHtmlString, 'hi')
+            ->once()
+            ->andReturn(['source' => 'en', 'text' => '']);
+
+        $response = $this->translate->translate($this->testHtmlString, 'hi', 'html');
+
+        $this->assertIsArray($response);
+
+        $this->assertArrayHasKey('source_text', $response);
+        $this->assertArrayHasKey('source_language_code', $response);
+        $this->assertArrayHasKey('translated_text', $response);
+        $this->assertArrayHasKey('translated_language_code', $response);
+    }
+
+    /** @test */
     public function it_can_translate_an_array_of_strings_passed_to_it()
     {
         $this->translateClient
-            ->shouldReceive('translateBatch')->with([$this->testString, $this->testString], 'hi')
+            ->shouldReceive('translateBatch')->with([$this->testString, $this->testString], 'hi', 'text')
             ->once()
             ->andReturn([
                 ['source' => 'en', 'text' => '', 'input' => $this->testString],

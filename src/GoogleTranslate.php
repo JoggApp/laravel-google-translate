@@ -52,14 +52,14 @@ class GoogleTranslate
         return $translations;
     }
 
-    public function translate($input, $to = null): array
+    public function translate($input, $to = null, $format = 'text'): array
     {
         $translateTo = $to ?? config('googletranslate.default_target_translation');
 
         $translateTo = $this->sanitizeLanguageCode($translateTo);
 
         if (is_array($input)) {
-            return $this->translateBatch($input, $translateTo);
+            return $this->translateBatch($input, $translateTo, $format);
         }
 
         $response = $this
@@ -87,13 +87,13 @@ class GoogleTranslate
         return $response['text'];
     }
 
-    public function translateBatch(array $input, string $translateTo): array
+    public function translateBatch(array $input, string $translateTo, $format = 'text'): array
     {
         $translateTo = $this->sanitizeLanguageCode($translateTo);
 
         $responses = $this
             ->translateClient
-            ->translateBatch($input, $translateTo);
+            ->translateBatch($input, $translateTo, $format);
 
         foreach ($responses as $response) {
             $translations[] = [

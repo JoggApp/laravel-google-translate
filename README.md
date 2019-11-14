@@ -92,6 +92,13 @@ GoogleTranslate::unlessLanguageIs('en', string $text);
 GoogleTranslate::justTranslate(string $text): string
 ```
 
+- There is is an optional third parameter for format to take advantage for better html translation support. Google Translate API currently supports 'text' and 'html' as parameters. The default for this parameter is 'text' as it has the best use case for most translations. 
+[Google Translate API Docs](https://cloud.google.com/translate/docs/reference/rest/v2/translate)
+
+```php
+GoogleTranslate::unlessLanguageIs('en', string $text, string $format);
+```
+
 - There is also a nice blade helper called `@translate` that comes with the package to make its use more neat in the view files. It accepts an optional second argument which is the language code you want the string to be translated in. You can specify the default option in the config file.
 
 ```
