@@ -160,7 +160,7 @@ class GoogleTranslate
         );
     }
 
-    protected function validateInput($input)
+    protected function validateInput($input): void
     {
         if(is_array($input) && in_array(null, $input)) {
             throw new \InvalidArgumentException('Input string cannot be null');
