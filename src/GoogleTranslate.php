@@ -3,6 +3,7 @@
 namespace JoggApp\GoogleTranslate;
 
 use Exception;
+use InvalidArgumentException;
 use JoggApp\GoogleTranslate\Traits\SupportedLanguages;
 
 class GoogleTranslate
@@ -24,6 +25,8 @@ class GoogleTranslate
             return $this->detectLanguageBatch($input);
         }
 
+        $this->validateInput($input);
+
         $response = $this
             ->translateClient
             ->detectLanguage($input);
@@ -37,6 +40,8 @@ class GoogleTranslate
 
     public function detectLanguageBatch(array $input): array
     {
+        $this->validateInput($input);
+
         $responses = $this
             ->translateClient
             ->detectLanguageBatch($input);
@@ -54,6 +59,8 @@ class GoogleTranslate
 
     public function translate($input, $to = null, $format = 'text'): array
     {
+        $this->validateInput($input);
+
         $translateTo = $to ?? config('googletranslate.default_target_translation');
 
         $translateTo = $this->sanitizeLanguageCode($translateTo);
@@ -76,6 +83,8 @@ class GoogleTranslate
 
     public function justTranslate(string $input, $to = null): string
     {
+        $this->validateInput($input);
+
         $translateTo = $to ?? config('googletranslate.default_target_translation');
 
         $translateTo = $this->sanitizeLanguageCode($translateTo);
@@ -90,6 +99,8 @@ class GoogleTranslate
     public function translateBatch(array $input, string $translateTo, $format = 'text'): array
     {
         $translateTo = $this->sanitizeLanguageCode($translateTo);
+
+        $this->validateInput($input);
 
         $responses = $this
             ->translateClient
@@ -148,5 +159,18 @@ class GoogleTranslate
             "Invalid or unsupported ISO 639-1 language code -{$languageCode}-,
             get the list of valid and supported language codes by running GoogleTranslate::languages()"
         );
+    }
+
+    protected function validateInput($input): void
+    {
+        if(is_array($input) && in_array(null, $input)) {
+            throw new InvalidArgumentException('Input string cannot be null');
+        }
+
+        if(is_null($input)) {
+            throw new InvalidArgumentException('Input string cannot be null');
+        }
+
+        return;
     }
 }
