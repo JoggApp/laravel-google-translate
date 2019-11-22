@@ -202,4 +202,28 @@ class GoogleTranslateTest extends TestCase
         );
         $this->translate->sanitizeLanguageCode('xx');
     }
+
+    /** @test */
+    public function it_validates_input_against_null_strings()
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->translate->translate(null, 'en');
+        $this->translate->justTranslate(null, 'en');
+    }
+
+    /** @test */
+    public function it_validates_input_against_null_strings_in_a_batch()
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->translate->translateBatch([null, null], 'en');
+    }
+
+    /** @test */
+    public function it_validates_input_agaisnt_null_strings_when_detecting_a_language()
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->translate->detectLanguage(null);
+        $this->translate->detectLanguage([null, null]);
+        $this->translate->detectLanguageBatch([null, null]);
+    }
 }
