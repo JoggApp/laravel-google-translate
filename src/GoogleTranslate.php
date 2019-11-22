@@ -3,6 +3,7 @@
 namespace JoggApp\GoogleTranslate;
 
 use Exception;
+use InvalidArgumentException;
 use JoggApp\GoogleTranslate\Traits\SupportedLanguages;
 
 class GoogleTranslate
@@ -163,11 +164,11 @@ class GoogleTranslate
     protected function validateInput($input): void
     {
         if(is_array($input) && in_array(null, $input)) {
-            throw new \InvalidArgumentException('Input string cannot be null');
+            throw new InvalidArgumentException('Input string cannot be null');
         }
 
         if(is_null($input)) {
-            throw new \InvalidArgumentException('Input string cannot be null');
+            throw new InvalidArgumentException('Input string cannot be null');
         }
 
         return;
