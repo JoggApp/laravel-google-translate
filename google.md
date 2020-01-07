@@ -6,12 +6,11 @@
 
 <img width="576" alt="screen shot 2018-10-11 at 12 11 19 am" src="https://user-images.githubusercontent.com/11228182/46759117-29c62600-ccec-11e8-99a2-b23ee035a75d.png">
 
-- Select the project you just created, and go the "Create Service Account Key" page and in the 'Service Account' section click on 'New Service Account'.
+- Select the project you just created, and go the "APIs & Services" -> "Credentials" using the navigation.
 
-- Enter the name & select the Role as 'Owner' for the project.
+- Click at the "Create credentials" dropdown button and choose "API key". To prevent unauthorized use and quota theft, restrict your key to limit how it can be used.
 
-- Then click on create to have the JSON credentials file downloaded automatically.
-
-- Add that json file in your laravel project root & add it to `.gitignore`.
-
-- Set the path to that file as the value for the key `key_file_path` in the `config/googletranslate.php` (config file published by this package).
+- Now, you can use this key to set a package-specific environment variable:
+```
+GOOGLE_TRANSLATE_API_KEY=AIzaS.....
+```
