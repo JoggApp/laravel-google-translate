@@ -1,5 +1,12 @@
 All the notable changes to the Laravel Google Translate package are documented in this file:
 
+## 4.0.1 (14-01-2020)
+- Added Github Actions workflow
+
+## v4.0.0 (07-01-2020)
+- Use v2 of Google translate client
+- Thank you to [Flears Network](https://github.com/RossUK88) for the [PR](https://github.com/JoggApp/laravel-google-translate/pull/12).
+
 ## v3.0.2 (22-11-2019)
 - Added input validation.
 - Thank you to [Ross](https://github.com/RossUK88) for the [PR](https://github.com/JoggApp/laravel-google-translate/pull/9).

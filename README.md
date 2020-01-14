@@ -1,7 +1,7 @@
 # Laravel package for the Google Translate API
 
 [![Latest Version](https://img.shields.io/github/release/JoggApp/laravel-google-translate.svg?style=flat-rounded)](https://github.com/JoggApp/laravel-google-translate/releases)
-[![Build Status](https://travis-ci.org/JoggApp/laravel-google-translate.svg?branch=master)](https://travis-ci.org/JoggApp/laravel-google-translate)
+![](https://github.com/JoggApp/laravel-google-translate/workflows/Run%20Tests/badge.svg?branch=master)
 [![Total Downloads](https://img.shields.io/packagist/dt/JoggApp/laravel-google-translate.svg?style=flat-rounded&colorB=brightgreen)](https://packagist.org/packages/JoggApp/laravel-google-translate)
 
 This package makes using the Google Translate API in your laravel app a breeze with minimum to no configuration, clean syntax and a consistent package API.
