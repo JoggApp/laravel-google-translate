@@ -74,7 +74,7 @@ class GoogleTranslateTest extends TestCase
     public function it_can_translate_the_string_passed_to_it()
     {
         $this->translateClient
-            ->shouldReceive('translate')->with($this->testString, 'hi')
+            ->shouldReceive('translate')->with($this->testString, 'hi', 'text')
             ->once()
             ->andReturn(['source' => 'en', 'text' => '']);
 
@@ -92,7 +92,7 @@ class GoogleTranslateTest extends TestCase
     public function it_can_translate_the_html_string_passed_to_it()
     {
         $this->translateClient
-            ->shouldReceive('translate')->with($this->testHtmlString, 'hi')
+            ->shouldReceive('translate')->with($this->testHtmlString, 'hi', 'html')
             ->once()
             ->andReturn(['source' => 'en', 'text' => '']);
 
@@ -166,7 +166,7 @@ class GoogleTranslateTest extends TestCase
             ->andReturn(['languageCode' => 'en', 'confidence' => '']);
 
         $this->translateClient
-            ->shouldReceive('translate')->with($this->testString, 'hi')
+            ->shouldReceive('translate')->with($this->testString, 'hi', 'text')
             ->once()
             ->andReturn(['source' => 'en', 'text' => '']);
 
