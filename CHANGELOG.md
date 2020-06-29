@@ -1,5 +1,9 @@
 All the notable changes to the Laravel Google Translate package are documented in this file:
 
+## v5.0.1 (30-06-2020)
+- Patched the format delegation bug.
+- Thank you to [Simon](https://github.com/smorris1709) for the [PR](https://github.com/JoggApp/laravel-google-translate/pull/18).
+
 ## 5.0.0 (03-03-2020)
 - Added Laravel v7.x support.
 - Dropped PHP v7.2 support, now PHP v7.3 is the minimum requirement.
