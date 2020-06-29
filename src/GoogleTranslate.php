@@ -71,7 +71,7 @@ class GoogleTranslate
 
         $response = $this
             ->translateClient
-            ->translate($input, $translateTo);
+            ->translate($input, $translateTo, $format);
 
         return [
             'source_text' => $input,
