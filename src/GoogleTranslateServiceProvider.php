@@ -19,9 +19,9 @@ class GoogleTranslateServiceProvider extends ServiceProvider
             $expression = explode(',', $expression);
 
             $input = $expression[0];
-            $languageCode = isset($expression[1]) ? str_replace("'", '', $expression[1]) : $defaultLanguage;
+            $languageCode = isset($expression[1]) ? $expression[1] : $defaultLanguage;
 
-            return "<?php echo GoogleTranslate::justTranslate($input, '$languageCode'); ?>";
+            return "<?php echo GoogleTranslate::justTranslate($input, $languageCode); ?>";
         });
     }
 

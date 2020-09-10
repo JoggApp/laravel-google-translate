@@ -1,5 +1,8 @@
 All the notable changes to the Laravel Google Translate package are documented in this file:
 
+## 6.0.1 (10-09-2020)
+- Fix https://github.com/JoggApp/laravel-google-translate/issues/13
+
 ## 6.0.0 (10-09-2020)
 - Added Laravel v8.x support.
 - Dropped Laravel v6.x & PHPUnit v8 support.
