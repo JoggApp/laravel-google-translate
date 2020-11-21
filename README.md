@@ -46,7 +46,7 @@ return [
     | https://github.com/JoggApp/laravel-google-translate/blob/master/google.md
     |-------------------------------------------------------------------------------
     */
-    'key_file_path' => base_path('composer.json'),
+    'api_key' => env('GOOGLE_TRANSLATE_API_KEY'),
 ];
 ```
 
