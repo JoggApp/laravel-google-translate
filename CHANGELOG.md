@@ -1,5 +1,10 @@
 All the notable changes to the Laravel Google Translate package are documented in this file:
 
+## 7.0.0 (24-01-2021)
+- Add PHP 8 Support
+- Drop PHP 7.3 Support
+- [PR by Josias](https://github.com/JoggApp/laravel-google-translate/pull/24)
+
 ## 6.0.1 (10-09-2020)
 - Fix https://github.com/JoggApp/laravel-google-translate/issues/13
 
