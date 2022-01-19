@@ -98,20 +98,21 @@ class GoogleTranslate
         return $response['text'];
     }
 
-    public function translateBatch(array $input, string $translateTo, $format = 'text'): array
+    public function translateBatch(array $input, string $translateFrom, string $translateTo, $format = 'text'): array
     {
+        $translateFrom = $this->sanitizeLanguageCode($translateFrom);
         $translateTo = $this->sanitizeLanguageCode($translateTo);
 
         $this->validateInput($input);
 
         $responses = $this
             ->translateClient
-            ->translateBatch($input, $translateTo, $format);
+            ->translateBatch($input, $translateFrom, $translateTo, $format);
 
         foreach ($responses as $response) {
             $translations[] = [
                 'source_text' => $response['input'],
-                'source_language_code' => $response['source'],
+                'source_language_code' => $translateFrom,
                 'translated_text' => $response['text'],
                 'translated_language_code' => $translateTo
             ];
