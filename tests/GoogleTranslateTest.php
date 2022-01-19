@@ -74,11 +74,11 @@ class GoogleTranslateTest extends TestCase
     public function it_can_translate_the_string_passed_to_it()
     {
         $this->translateClient
-            ->shouldReceive('translate')->with($this->testString, 'hi', 'text')
+            ->shouldReceive('translate')->with($this->testString, 'en', 'hi', 'text')
             ->once()
             ->andReturn(['source' => 'en', 'text' => '']);
 
-        $response = $this->translate->translate($this->testString, 'hi');
+        $response = $this->translate->translate($this->testString, 'en', 'hi');
 
         $this->assertIsArray($response);
 
@@ -92,11 +92,11 @@ class GoogleTranslateTest extends TestCase
     public function it_can_translate_the_html_string_passed_to_it()
     {
         $this->translateClient
-            ->shouldReceive('translate')->with($this->testHtmlString, 'hi', 'html')
+            ->shouldReceive('translate')->with($this->testHtmlString, 'en', 'hi', 'html')
             ->once()
             ->andReturn(['source' => 'en', 'text' => '']);
 
-        $response = $this->translate->translate($this->testHtmlString, 'hi', 'html');
+        $response = $this->translate->translate($this->testHtmlString, 'en', 'hi', 'html');
 
         $this->assertIsArray($response);
 
@@ -110,14 +110,14 @@ class GoogleTranslateTest extends TestCase
     public function it_can_translate_an_array_of_strings_passed_to_it()
     {
         $this->translateClient
-            ->shouldReceive('translateBatch')->with([$this->testString, $this->testString], 'hi', 'text')
+            ->shouldReceive('translateBatch')->with([$this->testString, $this->testString], 'en', 'hi', 'text')
             ->once()
             ->andReturn([
                 ['source' => 'en', 'text' => '', 'input' => $this->testString],
                 ['source' => 'en', 'text' => '', 'input' => $this->testString]
             ]);
 
-        $response = $this->translate->translate([$this->testString, $this->testString], 'hi');
+        $response = $this->translate->translate([$this->testString, $this->testString], 'en', 'hi');
 
         $this->assertIsArray($response);
 
