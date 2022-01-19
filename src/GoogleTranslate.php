@@ -57,25 +57,27 @@ class GoogleTranslate
         return $translations;
     }
 
-    public function translate($input, $to = null, $format = 'text'): array
+    public function translate($input, $from = null, $to = null, $format = 'text'): array
     {
         $this->validateInput($input);
 
+        $translateFrom = $from ?? config('googletranslate.default_source_translation');
         $translateTo = $to ?? config('googletranslate.default_target_translation');
 
+        $translateFrom = $this->sanitizeLanguageCode($translateFrom);
         $translateTo = $this->sanitizeLanguageCode($translateTo);
 
         if (is_array($input)) {
-            return $this->translateBatch($input, $translateTo, $format);
+            return $this->translateBatch($input, $translateFrom, $translateTo, $format);
         }
 
         $response = $this
             ->translateClient
-            ->translate($input, $translateTo, $format);
+            ->translate($input, $translateFrom, $translateTo, $format);
 
         return [
             'source_text' => $input,
-            'source_language_code' => $response['source'],
+            'source_language_code' => $translateFrom,
             'translated_text' => $response['text'],
             'translated_language_code' => $translateTo
         ];
