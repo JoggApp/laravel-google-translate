@@ -32,16 +32,16 @@ class GoogleTranslateClient
             ->detectLanguageBatch($input);
     }
 
-    public function translate(string $text, string $translateTo, string $format = 'text')
+    public function translate(string $text, string $translateFrom, string $translateTo, string $format = 'text')
     {
         return $this->translate
-            ->translate($text, ['target' => $translateTo, 'format' => $format]);
+            ->translate($text, ['source' => $translateFrom, 'target' => $translateTo, 'format' => $format]);
     }
 
-    public function translateBatch(array $input, string $translateTo, string $format = 'text')
+    public function translateBatch(array $input, string $translateFrom, string $translateTo, string $format = 'text')
     {
         return $this->translate
-            ->translateBatch($input, ['target' => $translateTo, 'format' => $format]);
+            ->translateBatch($input, ['source' => $translateFrom, 'target' => $translateTo, 'format' => $format]);
     }
 
     public function getAvaliableTranslationsFor(string $languageCode)
