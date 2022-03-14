@@ -31,7 +31,7 @@ class GoogleTranslateTest extends TestCase
 
     public function tearDown(): void
     {
-        parent::tearDown()
+        parent::tearDown();
             
         Mockery::close();
     }
