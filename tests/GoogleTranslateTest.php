@@ -9,6 +9,8 @@ use PHPUnit\Framework\TestCase;
 
 class GoogleTranslateTest extends TestCase
 {
+    use CreatesApplication;
+    
     public $testString = 'A test string';
     public $testHtmlString = '<p>A test string</p>';
 
@@ -19,6 +21,8 @@ class GoogleTranslateTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
+        
+        $this->createApplication();
 
         $this->translateClient = Mockery::mock(GoogleTranslateClient::class);
 
