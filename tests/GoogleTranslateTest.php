@@ -215,7 +215,7 @@ class GoogleTranslateTest extends TestCase
     public function it_validates_input_against_null_strings_in_a_batch()
     {
         $this->expectException(\InvalidArgumentException::class);
-        $this->translate->translateBatch([null, null], 'en');
+        $this->translate->translateBatch([null, null], 'en', 'hi');
     }
 
     /** @test */
