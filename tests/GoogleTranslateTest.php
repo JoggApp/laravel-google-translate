@@ -2,12 +2,13 @@
 
 namespace JoggApp\GoogleTranslate\Tests;
 
+use Illuminate\Support\Facades\Config;
 use JoggApp\GoogleTranslate\GoogleTranslate;
 use JoggApp\GoogleTranslate\GoogleTranslateClient;
 use Mockery;
-use PHPUnit\Framework\TestCase;
+use Orchestra\Testbench\TestCase as BaseTestCase;
 
-class GoogleTranslateTest extends TestCase
+class GoogleTranslateTest extends BaseTestCase
 {
     public $testString = 'A test string';
     public $testHtmlString = '<p>A test string</p>';
@@ -16,18 +17,13 @@ class GoogleTranslateTest extends TestCase
 
     private $translate;
 
-    public function setUp(): void
+    public function __construct()
     {
-        parent::setUp();
+        parent::__construct();
 
         $this->translateClient = Mockery::mock(GoogleTranslateClient::class);
 
         $this->translate = new GoogleTranslate($this->translateClient);
-    }
-
-    public function tearDown(): void
-    {
-        Mockery::close();
     }
 
     /** @test */
@@ -135,11 +131,11 @@ class GoogleTranslateTest extends TestCase
     public function test_the_just_translate_method_returns_just_the_translated_string()
     {
         $this->translateClient
-            ->shouldReceive('translate')->with($this->testString, 'en')
+            ->shouldReceive('translate')->with($this->testString, 'en', 'hi')
             ->once()
             ->andReturn(['text' => 'A test string']);
 
-        $response = $this->translate->justTranslate($this->testString, 'en');
+        $response = $this->translate->justTranslate($this->testString, 'en', 'hi');
 
         $this->assertEquals('A test string', $response);
     }
@@ -152,7 +148,7 @@ class GoogleTranslateTest extends TestCase
             ->once()
             ->andReturn(['languageCode' => 'en', 'confidence' => '']);
 
-        $response = $this->translate->unlessLanguageIs('en', $this->testString, 'hi');
+        $response = $this->translate->unlessLanguageIs('en', $this->testString, 'hi', 'en');
 
         $this->assertEquals($this->testString, $response);
     }
@@ -166,11 +162,11 @@ class GoogleTranslateTest extends TestCase
             ->andReturn(['languageCode' => 'en', 'confidence' => '']);
 
         $this->translateClient
-            ->shouldReceive('translate')->with($this->testString, 'hi', 'text')
+            ->shouldReceive('translate')->with($this->testString, 'hi', 'en', 'text')
             ->once()
             ->andReturn(['source' => 'en', 'text' => '']);
 
-        $response = $this->translate->unlessLanguageIs('hi', $this->testString, 'hi');
+        $response = $this->translate->unlessLanguageIs('hi', $this->testString, 'hi', 'en');
 
         $this->assertIsArray($response);
 

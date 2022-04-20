@@ -131,10 +131,12 @@ class GoogleTranslate
             ->getAvaliableTranslationsFor($languageCode);
     }
 
-    public function unlessLanguageIs(string $languageCode, string $input, $to = null)
+    public function unlessLanguageIs(string $languageCode, string $input, $from = null, $to = null)
     {
+        $translateFrom = $from ?? config('googletranslate.default_source_translation');
         $translateTo = $to ?? config('googletranslate.default_target_translation');
 
+        $translateFrom = $this->sanitizeLanguageCode($translateFrom);
         $translateTo = $this->sanitizeLanguageCode($translateTo);
 
         $languageCode = $this->sanitizeLanguageCode($languageCode);
@@ -142,7 +144,7 @@ class GoogleTranslate
         $languageMisMatch = $languageCode != $this->detectLanguage($input)['language_code'];
 
         if ($languageMisMatch) {
-            return $this->translate($input, $translateTo);
+            return $this->translate($input, $translateFrom, $translateTo);
         }
 
         return $input;
