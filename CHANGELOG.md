@@ -1,5 +1,9 @@
 All the notable changes to the Laravel Google Translate package are documented in this file:
 
+## 8.1.0 (14-07-2022)
+- Fixes by [Florian Ressel](https://github.com/resslinger) across various PRs.
+- Thank you Florian :heart:
+
 ## 8.0.0 (07-03-2022)
 - Set minimum PHP requirement to PHP 8.0
 - [PR by Florian Ressel to add support for Laravel 9](https://github.com/JoggApp/laravel-google-translate/pull/36)
