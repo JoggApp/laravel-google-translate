@@ -77,7 +77,7 @@ GoogleTranslate::translate(['Hello world', 'Laravel is the best']);
 - Get all the available translations from 'Google Translation' for a particular language by passing its language code:
 
 ```php
-GoogleTranslate::getAvaliableTranslationsFor('en'): array
+GoogleTranslate::getAvailableTranslationsFor('en'): array
 ```
 
 - Translate unless the language is same as the first argument. This method is a clean way to ask the package to detect the language of the given string, if it is same as the first argument, translation isn't performed. It accepts an optional third argument which is the language code you want the string to be translated in. You can specify the default option in the config file. If the languages are same, the input string is returned as it is, else an array is returned containing the translation results:

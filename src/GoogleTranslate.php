@@ -123,12 +123,12 @@ class GoogleTranslate
         return $translations;
     }
 
-    public function getAvaliableTranslationsFor(string $languageCode): array
+    public function getAvailableTranslationsFor(string $languageCode): array
     {
         $languageCode = $this->sanitizeLanguageCode($languageCode);
 
         return $this->translateClient
-            ->getAvaliableTranslationsFor($languageCode);
+            ->getAvailableTranslationsFor($languageCode);
     }
 
     public function unlessLanguageIs(string $languageCode, string $input, $from = null, $to = null)

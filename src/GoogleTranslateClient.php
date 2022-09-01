@@ -44,7 +44,7 @@ class GoogleTranslateClient
             ->translateBatch($input, ['source' => $translateFrom, 'target' => $translateTo, 'format' => $format]);
     }
 
-    public function getAvaliableTranslationsFor(string $languageCode)
+    public function getAvailableTranslationsFor(string $languageCode)
     {
         return $this->translate
             ->localizedLanguages(['target' => $languageCode]);
