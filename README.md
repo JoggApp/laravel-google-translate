@@ -1,3 +1,6 @@
+# This package is no longer actively developed and will soon be archived. [More details here](https://github.com/JoggApp/laravel-google-translate/discussions/51)
+
+
 # Laravel package for the Google Translate API
 
 [![Latest Version](https://img.shields.io/github/release/JoggApp/laravel-google-translate.svg?style=flat-rounded)](https://github.com/JoggApp/laravel-google-translate/releases)
@@ -64,9 +67,11 @@ GoogleTranslate::detectLanguage(['Hello world', 'Laravel is the best']);
 // Returns multi-dimensional array containing result set for all the array elements.
 ```
 
-- Translating the string(s): The `translate` method accepts a second optional argument which can be the code of the language you want the string to be translated in. You can specify the default option in the config file:
+- Translating the string(s): The `translate` method accepts a third optional argument which can be the code of the language you want the string to be translated in. You can specify the default option in the config file:
 
 ```php
+// GoogleTranslate::translate($input, $from = null, $to = null, $format = 'text'): array
+
 GoogleTranslate::translate('Hello world'): array
 
 GoogleTranslate::translate(['Hello world', 'Laravel is the best']);

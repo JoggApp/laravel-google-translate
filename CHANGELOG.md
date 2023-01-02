@@ -1,5 +1,8 @@
 All the notable changes to the Laravel Google Translate package are documented in this file:
 
+## 9.0 (1-1-2023)
+- Change method name (fix typo)
+
 ## 8.1.0 (14-07-2022)
 - Fixes by [Florian Ressel](https://github.com/resslinger) across various PRs.
 - Thank you Florian :heart:
