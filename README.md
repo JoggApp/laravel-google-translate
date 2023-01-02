@@ -1,4 +1,4 @@
-# This package is no longer actively developed and will soon be archived. [More details here](https://github.com/JoggApp/laravel-google-translate/discussions/51)
+# This package is no longer actively developed. [More details here/Call for maintainers](https://github.com/JoggApp/laravel-google-translate/discussions/51)
 
 
 # Laravel package for the Google Translate API
