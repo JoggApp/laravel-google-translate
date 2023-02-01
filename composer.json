@@ -27,21 +27,21 @@
         }
     },
     "require": {
-        "php": "^8.0",
-        "google/cloud-translate": "^1.2",
-        "illuminate/support": "9.*"
+        "php": "^8.1",
+        "google/cloud-translate": "^1.12",
+        "illuminate/support": "^10.0"
     },
     "require-dev": {
-        "mockery/mockery": "^1.1",
-        "orchestra/testbench" : "7.*",
-        "phpunit/phpunit": "^9.0"
+        "mockery/mockery": "^1.4.4",
+        "orchestra/testbench": "^8.0",
+        "phpunit/phpunit": "^9.5.10"
     },
     "extra": {
         "laravel": {
             "providers": [
                 "JoggApp\\GoogleTranslate\\GoogleTranslateServiceProvider"
             ],
-            "aliases":{
+            "aliases": {
                 "GoogleTranslate": "JoggApp\\GoogleTranslate\\GoogleTranslateFacade"
             }
         }
