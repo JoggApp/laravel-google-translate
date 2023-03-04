@@ -4,6 +4,8 @@ return [
     /*
       |----------------------------------------------------------------------------------------------------
       | The ISO 639-1 code of the default source language.
+      |
+      | You may as well leave an empty string '' for automatic source language detection.
       |----------------------------------------------------------------------------------------------------
       */
     'default_source_translation' => 'en',

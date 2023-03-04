@@ -61,15 +61,15 @@ class GoogleTranslate
     {
         $this->validateInput($input);
 
-        $translateFrom = $from ?? config('googletranslate.default_source_translation');
+        $translateFrom = $from === null ? config('googletranslate.default_source_translation') : $from;
         $translateTo = $to ?? config('googletranslate.default_target_translation');
-
-        $translateFrom = $this->sanitizeLanguageCode($translateFrom);
-        $translateTo = $this->sanitizeLanguageCode($translateTo);
 
         if (is_array($input)) {
             return $this->translateBatch($input, $translateFrom, $translateTo, $format);
         }
+
+        $translateFrom = $this->sanitizeLanguageCode($translateFrom, true);
+        $translateTo = $this->sanitizeLanguageCode($translateTo);
 
         $response = $this
             ->translateClient
@@ -77,7 +77,7 @@ class GoogleTranslate
 
         return [
             'source_text' => $input,
-            'source_language_code' => $translateFrom,
+            'source_language_code' => $response['source'],
             'translated_text' => $response['text'],
             'translated_language_code' => $translateTo
         ];
@@ -90,7 +90,7 @@ class GoogleTranslate
         $translateFrom = $from ?? config('googletranslate.default_source_translation');
         $translateTo = $to ?? config('googletranslate.default_target_translation');
 
-        $translateFrom = $this->sanitizeLanguageCode($translateFrom);
+        $translateFrom = $this->sanitizeLanguageCode($translateFrom, true);
         $translateTo = $this->sanitizeLanguageCode($translateTo);
 
         $response = $this
@@ -102,7 +102,7 @@ class GoogleTranslate
 
     public function translateBatch(array $input, string $translateFrom, string $translateTo, $format = 'text'): array
     {
-        $translateFrom = $this->sanitizeLanguageCode($translateFrom);
+        $translateFrom = $this->sanitizeLanguageCode($translateFrom, true);
         $translateTo = $this->sanitizeLanguageCode($translateTo);
 
         $this->validateInput($input);
@@ -114,7 +114,7 @@ class GoogleTranslate
         foreach ($responses as $response) {
             $translations[] = [
                 'source_text' => $response['input'],
-                'source_language_code' => $translateFrom,
+                'source_language_code' => $response['source'],
                 'translated_text' => $response['text'],
                 'translated_language_code' => $translateTo
             ];
@@ -150,8 +150,13 @@ class GoogleTranslate
         return $input;
     }
 
-    public function sanitizeLanguageCode(string $languageCode)
+    public function sanitizeLanguageCode(string $languageCode, $allowEmptyString = false)
     {
+        // we can pass '' as source language for auto-detection
+        if ($allowEmptyString && $languageCode === '') {
+            return $languageCode;
+        }
+
         $languageCode = trim(strtolower($languageCode));
 
         if ($languageCode === 'zh-tw') {
